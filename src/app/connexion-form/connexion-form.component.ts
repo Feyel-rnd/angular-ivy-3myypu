@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 
-async function loginEmailPassword(email, password) {
+async function loginEmailPassword(email, password,app) {
   // Create an anonymous credential
   
-  const app = environment.application;
+  
   const credentials = Realm.Credentials.emailPassword(email, password);
   
   try {
@@ -34,7 +34,8 @@ async function loginEmailPassword(email, password) {
     const collection = mongo.db('Data').collection("users");
     const isfound = await collection.find({'id':user.id})
     const existing_user = isfound[0] != undefined
-    const moment = Date.now()
+    
+    const moment = new Date();
     if (!existing_user) {
       collection.insertOne({'id':user.id,'username':username,'user_mail':emmail,'created':moment,'last_login':moment})
     }
@@ -84,8 +85,8 @@ export class ConnexionFormComponent {
     this.loginUser();
     if (this.correctForm) {
       //console.log(this.correctForm)
-
-      loginEmailPassword(a, b).then((authorized) => {
+      const app = environment.application;
+      loginEmailPassword(a, b,app).then((authorized) => {
         if (authorized) {
           console.log("Successfully logged in!")
           // this.redirect = true;
