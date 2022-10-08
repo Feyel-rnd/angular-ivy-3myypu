@@ -13,7 +13,7 @@ async function createEmailPassword(email, password) {
     // Authenticate the user
     await app.emailPasswordAuth.registerUser({ email, password });
     // `App.currentUser` updates to match the logged in user
-
+    
     console.log('Successfull pending request !');
   } catch (err) {
     console.error('Failed', err);

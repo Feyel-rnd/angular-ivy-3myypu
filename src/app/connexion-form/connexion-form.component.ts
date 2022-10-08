@@ -29,7 +29,18 @@ async function loginEmailPassword(email, password) {
     sessionStorage.setItem("username", username);
     sessionStorage.setItem("userId", user.id);
     sessionStorage.setItem("user",JSON.stringify(user))
-    
+
+    const mongo =user.mongoClient('Cluster0');
+    const collection = mongo.db('Data').collection("users");
+    const existing_user = collection.find({'id':user.id})[0]
+    console.log(existing_user)
+    const moment = Date.now()
+    if (0) {
+      collection.insertOne({'id':user.id,'username':username,'user_mail':emmail,'created':moment,'last_login':moment})
+    }
+    else {
+      collection.updateOne({'id':user.id},{$set:{'last_login':moment}})
+    }
     return true;
   } catch (err) {
     console.error('Failed to log in', err);
@@ -81,6 +92,7 @@ export class ConnexionFormComponent {
           // //console.log(user.__zone_symbol__value)
                   // Usually you would use the redirect URL from the auth service.
           // However to keep the example simple, we will always redirect to `/admin`.
+
           const redirectUrl = '/dashboard';
   
           // Redirect the user
