@@ -25,8 +25,8 @@ last_login : any;
   collection.find({'id':user.id}).then((value:any)=>{ 
     this.user_mail = value[0].user_mail
     this.username = value[0].username
-    this.created = value[0].created.getDay() + "/" + (value[0].created.getMonth()+1) + "/" + value[0].created.getFullYear() + "à " + value[0].created.getHours() + "h" +  value[0].created.getMinutes()
-    this.last_login = value[0].last_login.getDay() + "/" + (value[0].last_login.getMonth()+1) + "/" + value[0].last_login.getFullYear() + "à " + value[0].last_login.getHours() + "h" +  value[0].last_login.getMinutes()
+    this.created = value[0].created.toLocaleString()
+    this.last_login = value[0].last_login.toLocaleString()
   })
 
 
