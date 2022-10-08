@@ -3,15 +3,9 @@ import {Sort} from '@angular/material/sort';
 import { environment } from '../../../environments/environment';
 
 
-export interface Analysis {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
-}
 
-export interface Analysis2 {
+
+export interface Analysis{
   _id: any;
   type: string;
   active: boolean;
@@ -35,17 +29,17 @@ export class AnswerPageComponent implements OnInit {
   mongo : any;
   collection : any;
   
-  analysis:Analysis2[];
+  analysis:Analysis[];
 
 
-sortedData: Analysis2[];
+sortedData: Analysis[];
 
 constructor() {
   this.user = this.app.allUsers[sessionStorage.getItem("userId")]
     
   this.mongo =this.user.mongoClient('Cluster0');
   this.collection = this.mongo.db('Data').collection("Analyses");
-  this.collection.find({}).then((value)=>{
+  this.collection.find({"active":true}).then((value)=>{
        //console.log(value)
        this.analysis = value
        //console.log(this.analysis)
