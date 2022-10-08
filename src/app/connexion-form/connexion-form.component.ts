@@ -32,10 +32,10 @@ async function loginEmailPassword(email, password) {
 
     const mongo =user.mongoClient('Cluster0');
     const collection = mongo.db('Data').collection("users");
-    const existing_user = collection.find({'id':user.id})[0]
-    console.log(existing_user)
+    const isfound = await collection.find({'id':user.id})
+    const existing_user = isfound[0] != undefined
     const moment = Date.now()
-    if (0) {
+    if (!existing_user) {
       collection.insertOne({'id':user.id,'username':username,'user_mail':emmail,'created':moment,'last_login':moment})
     }
     else {

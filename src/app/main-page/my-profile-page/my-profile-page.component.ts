@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-my-profile-page',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfilePageComponent implements OnInit {
   constructor() { }
-
+app = environment.application
 user : any;
 mongo : any;
 collection : any;
