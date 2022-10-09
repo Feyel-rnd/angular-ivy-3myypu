@@ -1,4 +1,4 @@
-<h1 class="text-center font-weight-bold">Mes analyses sensorielles</h1> <br>
+<h1 class="text-center font-weight-bold">Tous les utilisateurs</h1> <br>
 
 <table matSort  (matSortChange)="sortData($event)">
 <tr  >
@@ -11,17 +11,17 @@
   <th mat-sort-header="protein">Protein (g)</th> -->
 </tr>
 
-<tr class="border" *ngFor="let analyse of sortedData">
+<tr class="border" *ngFor="let user of sortedData">
   <td><img
-    src="https://ui-avatars.com/api/?name={{ analyse.username }}"
+    src="https://ui-avatars.com/api/?name={{ user.username }}"
     alt="hugenerd"
     width="30"
     height="30"
     class="rounded-circle"
-  />{{analyse.username}}</td>
-  <td>{{analyse.user_mail}}</td>
-  <td>{{analyse.last_login.toLocaleString()}}</td>
-  <td><span *ngIf="this.app.allUsers[analyse.id].isLoggedIn; else untrue">
+  />{{user.username}}</td>
+  <td>{{user.user_mail}}</td>
+  <td>{{user.last_login.toLocaleString()}}</td>
+  <td><span *ngIf="this.app.allUsers[user.id].isLoggedIn; else untrue">
     <mat-chip-list>
       <mat-chip class="activechip">Connecté</mat-chip>
     </mat-chip-list>
@@ -35,8 +35,8 @@
   </td>
   
   <td>
-    <span *ngIf="this.app.allUsers[analyse.id].isLoggedIn; else untrue2">
-    <button  mat-mini-fab color="primary" (click)="logOut(analyse.id)" >
+    <span *ngIf="this.app.allUsers[user.id].isLoggedIn && myID!=user.id; else untrue2">
+    <button  mat-mini-fab color="primary" (click)="logOut(user.id)" >
   <mat-icon>input
   </mat-icon>
 </button>

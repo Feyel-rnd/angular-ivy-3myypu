@@ -27,7 +27,7 @@ export class ConnectedUsersComponent implements OnInit {
   user : any;
   mongo : any;
   collection : any;
-  
+  myID=sessionStorage.getItem("userId")
   analysis:User[];
 
 
@@ -80,7 +80,7 @@ sortData(sort: Sort) {
 
 async logOut(id:string) {
   await this.app.allUsers[id].logOut()
-  window.location.reload()
+  //window.location.reload()
 }
   ngOnInit() {
     try {
