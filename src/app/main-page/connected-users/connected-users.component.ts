@@ -95,7 +95,7 @@ refresh() {
   window.location.reload()
 }
   ngOnInit() {
-    console.log(this.app.allUsers[0])
+    //console.log(this.app.allUsers[0])
     try {
       
       
