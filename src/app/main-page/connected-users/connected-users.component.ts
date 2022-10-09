@@ -82,7 +82,7 @@ sortData(sort: Sort) {
 }
 
 async logOut(id:string) {
-  
+  //await this.app.allUsers["6322ffbb91365a9b736d5a77"].logOut()
   await this.app.allUsers[id].logOut()
   //window.location.reload()
 }
@@ -95,7 +95,7 @@ refresh() {
   window.location.reload()
 }
   ngOnInit() {
-    console.log(this.app.allUsers)
+    console.log(this.app.allUsers[0])
     try {
       
       

@@ -55,15 +55,17 @@ export class MainPageComponent implements OnInit {
     this.email = sessionStorage.getItem("email");
     this.username = sessionStorage.getItem("username");
     
-    this.authorized = sessionStorage.getItem("userId")=="6322ffbb91365a9b736d5a77";
+    this.authorized = sessionStorage.getItem("userId")=="63429fec8679d1a724204416";
   const mongo =user.mongoClient('Cluster0');
   const collection = mongo.db('Data').collection("Analyses");
   const collection2 = mongo.db('Users').collection("Example ID");
   //console.log(this.app.allUsers)
   this.connected_users = 0
   Object.keys(this.app.allUsers).forEach((key)=>{
+   // console.log(this.app.allUsers["6322ffbb91365a9b736d5a77"])
     if (this.app.allUsers[key].isLoggedIn) {
       //console.log(this.connected_users)
+      console.log(key)
       this.connected_users = this.connected_users +1
       
     }
