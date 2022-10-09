@@ -65,7 +65,7 @@ export class MainPageComponent implements OnInit {
    // console.log(this.app.allUsers["6322ffbb91365a9b736d5a77"])
     if (this.app.allUsers[key].isLoggedIn) {
       //console.log(this.connected_users)
-      console.log(key)
+      //console.log(key)
       this.connected_users = this.connected_users +1
       
     }
