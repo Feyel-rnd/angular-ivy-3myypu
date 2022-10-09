@@ -27,7 +27,7 @@
 </mat-form-field>
 
 
-<div *ngIf="Selected=='Personnalisé'" class="container">  
+<div *ngIf="Selected=='Personnalisé';else fields" class="container">  
    
   
 
@@ -72,6 +72,7 @@
 
  <!-- {{this.productForm.value | json}} -->
 </div>
+<ng-template #fields></ng-template>
 
 
 <input
