@@ -19,6 +19,7 @@ export class CreateAnalysisPageComponent implements OnInit {
   models : any;
   Selected :string;
   nom_analyse : string;
+  Question_Type : string;
   constructor(private fb:FormBuilder) {
     this.user = this.app.allUsers[sessionStorage.getItem("userId")]
       
@@ -31,6 +32,16 @@ export class CreateAnalysisPageComponent implements OnInit {
       });  
       
   }
+
+  question_types = [
+    {
+      name : "Texte",
+    },
+    {
+      name : "Case à cocher",
+    }
+  ]
+
   createForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
