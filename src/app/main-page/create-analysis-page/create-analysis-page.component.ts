@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -16,10 +16,13 @@ export class CreateAnalysisPageComponent implements OnInit {
   user : any;
   mongo : any;
   collection : any;
+  models : any;
+  Selected :string;
   constructor(private fb:FormBuilder) {
     this.user = this.app.allUsers[sessionStorage.getItem("userId")]
       
     this.mongo =this.user.mongoClient('Cluster0');
+    this.collection = this.mongo.db('Data').collection("models");
   
       this.productForm = this.fb.group({  
         name: '',  
@@ -27,8 +30,16 @@ export class CreateAnalysisPageComponent implements OnInit {
       });  
       
   }
-
+  createForm = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
   ngOnInit() {
+    this.collection.find({}).then((value)=>{
+    
+    this.models = value
+    this.models.push({name : "Personnalisé"})
+    })
   }
   
 quantities() : FormArray {  

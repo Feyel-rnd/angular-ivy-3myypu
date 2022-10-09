@@ -1,6 +1,6 @@
 <h1 class="text-center ">Créer un questionnaire</h1> <br>
 
-<form  (ngSubmit)="onSubmit()">  
+<form (ngSubmit)="onSubmit()">  
 <mat-card class="fo">
   
 <mat-form-field class="title_input" appearance="fill">
@@ -17,7 +17,17 @@
 </mat-form-field>
 
 
-<div class="container">  
+<mat-form-field appearance="fill">
+<mat-label>Type d'analyse</mat-label>
+<mat-select [(value)]="Selected">
+<mat-option *ngFor="let model of models" value="option" >
+  {{model.name}}
+</mat-option>
+</mat-select>
+</mat-form-field>
+{{Selected}}
+
+<div *ngIf="0" class="container">  
    
   
 
@@ -58,13 +68,14 @@
  
     
 <br/>  
+
+
  <!-- {{this.productForm.value | json}} -->
 </div>
 
 
-
 <input
-          type="submit"
+          type="button"
           mat-input
           value="Créer"
           
