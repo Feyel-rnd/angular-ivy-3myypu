@@ -20,14 +20,14 @@
 <mat-form-field appearance="fill">
 <mat-label>Type d'analyse</mat-label>
 <mat-select [(value)]="Selected">
-<mat-option *ngFor="let model of models" value="option" >
+<mat-option *ngFor="let model of models" value="{{model.name}}" >
   {{model.name}}
 </mat-option>
 </mat-select>
 </mat-form-field>
-{{Selected}}
 
-<div *ngIf="0" class="container">  
+
+<div *ngIf="Selected=='Personnalisé'" class="container">  
    
   
 
