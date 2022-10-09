@@ -12,6 +12,7 @@ export interface User {
   username: string;
   created: Date;
   user_mail : string;
+  role : string;
 }
 
 
@@ -24,25 +25,27 @@ export class ConnectedUsersComponent implements OnInit {
 
   
   app = environment.application
-  user : any;
+  Activeuser : any;
   mongo : any;
   collection : any;
   myID=sessionStorage.getItem("userId")
-  analysis:User[];
+  user:User[];
 
 
 sortedData: User[];
 
 constructor() {
-  this.user = this.app.allUsers[sessionStorage.getItem("userId")]
+  this.Activeuser = this.app.allUsers[sessionStorage.getItem("userId")]
   
-  this.mongo =this.user.mongoClient('Cluster0');
+  this.mongo =this.Activeuser.mongoClient('Cluster0');
   this.collection = this.mongo.db('Data').collection("users");
+  
   this.collection.find({}).then((value)=>{
        //console.log(value)
-       this.analysis = value
-       //console.log(this.analysis)
-  this.sortedData = this.analysis.slice();
+       this.user = value
+       
+       //console.log(this.user)
+  this.sortedData = this.user.slice();
     })
 
     
@@ -52,7 +55,7 @@ constructor() {
 
 sortData(sort: Sort) {
   
-  const data = this.analysis.slice();
+  const data = this.user.slice();
   if (!sort.active || sort.direction === '') {
     this.sortedData = data;
     return;
@@ -79,11 +82,23 @@ sortData(sort: Sort) {
 }
 
 async logOut(id:string) {
+  
   await this.app.allUsers[id].logOut()
   //window.location.reload()
 }
+async remove(id:string) {
+  this.collection = this.mongo.db('Data').collection("users");
+  this.collection.deleteOne({"id":id})
+  //await this.app.removeUser(this.app.allUsers[id])
+}
+refresh() {
+  window.location.reload()
+}
   ngOnInit() {
+    console.log(this.app.allUsers)
     try {
+      
+      
     
     
   } catch(err) {

@@ -1,4 +1,7 @@
-<h1 class="text-center font-weight-bold">Tous les utilisateurs</h1> <br>
+<h1 class="text-center font-weight-bold">Tous les utilisateurs <button  mat-mini-fab color="primary" (click)="refresh()" >
+<mat-icon>refresh
+</mat-icon>
+</button></h1><br>
 
 <table matSort  (matSortChange)="sortData($event)">
 <tr  >
@@ -37,14 +40,19 @@
   <td>
     <span *ngIf="this.app.allUsers[user.id].isLoggedIn && myID!=user.id; else untrue2">
     <button  mat-mini-fab color="primary" (click)="logOut(user.id)" >
-  <mat-icon>input
+  <mat-icon>logout
   </mat-icon>
 </button>
 </span>
-<ng-template #untrue2><button disabled mat-mini-fab color="warn" >
-<mat-icon>input
+<ng-template #untrue2><button disabled mat-mini-fab >
+<mat-icon>logout
 </mat-icon>
-</button></ng-template>
+</button>
+</ng-template>
+<button class="ml-2"  mat-mini-fab color="warn" (click)="remove(user.id)" >
+<mat-icon>delete
+</mat-icon>
+</button>
 </td>
   <!-- <td>{{dessert.carbs}}</td>
   <td>{{dessert.protein}}</td> -->
