@@ -18,6 +18,7 @@ export class CreateAnalysisPageComponent implements OnInit {
   collection : any;
   models : any;
   Selected :string;
+  nom_analyse : string;
   constructor(private fb:FormBuilder) {
     this.user = this.app.allUsers[sessionStorage.getItem("userId")]
       
@@ -25,8 +26,8 @@ export class CreateAnalysisPageComponent implements OnInit {
     this.collection = this.mongo.db('Data').collection("models");
   
       this.productForm = this.fb.group({  
-        name: '',  
-        quantities: this.fb.array([]) ,  
+        name: this.nom_analyse,  
+        quantities: this.fb.array(["1"]) ,  
       });  
       
   }
@@ -41,7 +42,9 @@ export class CreateAnalysisPageComponent implements OnInit {
     this.models.push({name : "Personnalisé"})
     })
   }
-  
+  show() {
+    console.log(this.nom_analyse)
+  }
 quantities() : FormArray {  
   return this.productForm.get("quantities") as FormArray  
 }  

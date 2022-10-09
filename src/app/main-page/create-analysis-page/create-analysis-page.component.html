@@ -5,7 +5,7 @@
   
 <mat-form-field class="title_input" appearance="fill">
 <mat-label>Nom de l'analyse</mat-label>
-    <input matInput  >
+    <input matInput #nom_analyse >
 </mat-form-field>
 
 <mat-form-field appearance="fill">
@@ -73,13 +73,13 @@
  <!-- {{this.productForm.value | json}} -->
 </div>
 <ng-template #fields></ng-template>
-
+{{this.productForm.value | json}}
 
 <input
           type="button"
           mat-input
           value="Créer"
-          
+          (click)="show()"
         />
 
 </mat-card>
