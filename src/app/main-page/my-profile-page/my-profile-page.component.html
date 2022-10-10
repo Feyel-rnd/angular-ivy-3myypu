@@ -13,6 +13,8 @@ Votre nom d'utilisateur : {{username}} <br>
 Votre adresse email : {{user_mail}} <br>
 Membre depuis : {{created}}<br>
 Dernière connexion : {{last_login}} <br>
+Roles : <mat-chip-list><mat-chip *ngFor="let role of roles">{{role}}</mat-chip></mat-chip-list>
+<br>
 <br><br>
 
 <button mat-button class="border">Modifier mon mot de passe</button>
