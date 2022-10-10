@@ -37,7 +37,7 @@ async function loginEmailPassword(email, password,app) {
     
     const moment = new Date();
     if (!existing_user) {
-      collection.insertOne({'id':user.id,'username':username,'user_mail':emmail,'created':moment,'last_login':moment})
+      collection.insertOne({'id':user.id,'username':username,'user_mail':emmail,'created':moment,'last_login':moment,roles:["Jury"]})
     }
     else {
       collection.updateOne({'id':user.id},{$set:{'last_login':moment}})

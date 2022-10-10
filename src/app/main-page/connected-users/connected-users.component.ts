@@ -12,7 +12,7 @@ export interface User {
   username: string;
   created: Date;
   user_mail : string;
-  role : string;
+  roles : Array<string>;
 }
 
 
@@ -68,8 +68,8 @@ sortData(sort: Sort) {
         return compare(a.username, b.username, isAsc);
       case 'email':
         return compare(a.user_mail, b.user_mail, isAsc);
-      case 'active':
-        return compare(a.active, b.active, isAsc);
+      // case 'roles':
+      //   return compare(a.roles, b.roles, isAsc);
       
       // case 'carbs':
       //   return compare(a.carbs, b.carbs, isAsc);

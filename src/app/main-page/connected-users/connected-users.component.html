@@ -1,14 +1,11 @@
-<h1 class="text-center font-weight-bold">Tous les utilisateurs <button  mat-mini-fab color="primary" (click)="refresh()" >
-<mat-icon>refresh
-</mat-icon>
-</button></h1><br>
+<h1 class="text-center font-weight-bold">Tous les utilisateurs</h1><br>
 
 <table matSort  (matSortChange)="sortData($event)">
 <tr  >
   <th  mat-sort-header="username" >Nom</th>
   <th mat-sort-header="email">Email</th>
   <th mat-sort-header="last_login">Dernière connexion</th>
-  <th mat-sort-header="active">Etat</th>
+  <th mat-sort-header="active">Roles</th>
   <th mat-sort-header="actions">Actions</th>
   <!-- <th mat-sort-header="carbs">Carbs (g)</th>
   <th mat-sort-header="protein">Protein (g)</th> -->
@@ -24,6 +21,11 @@
   />{{user.username}}</td>
   <td>{{user.user_mail}}</td>
   <td>{{user.last_login.toLocaleString()}}</td>
+  <td><span *ngFor="let role of user.roles">
+  <mat-chip-list><mat-chip>{{role}}</mat-chip></mat-chip-list>
+  </span>
+  </td>
+<!--   
   <td><span *ngIf="this.app.allUsers[user.id].isLoggedIn; else untrue">
     <mat-chip-list>
       <mat-chip class="activechip">Connecté</mat-chip>
@@ -50,7 +52,7 @@
 </button>
 </ng-template>
 
-</td>
+</td> -->
   <!-- <td>{{dessert.carbs}}</td>
   <td>{{dessert.protein}}</td> -->
 </tr>
